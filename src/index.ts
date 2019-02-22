@@ -10,15 +10,24 @@ export enum ChangeType {
 export class Change {
   public type: ChangeType;
   public prop: string;
+  public index: number | null;
+  public prev: any;
+  public next: any;
 
-  constructor(prop: string, type: ChangeType) {
+  constructor(
+    prop: string,
+    type: ChangeType,
+    prev: any,
+    next: any,
+    index: number | null = null
+  ) {
     this.type = type;
     this.prop = prop;
+    this.prev = prev;
+    this.next = next;
+    this.index = index;
   }
 }
-
-// FakeSlack
-// FakeDb
 
 // We won't ever have many experiments at the same time,
 // we can get away with the n^2
@@ -29,9 +38,10 @@ interface IArrayDiffOpts {
 }
 
 interface IDiffOpts {
-  path: string;
-  isArray: boolean;
-  arrMeta: IArrayDiffOpts[];
+  path?: string;
+  isArray?: boolean;
+  index?: number;
+  arrMeta?: IArrayDiffOpts[];
 }
 
 export function getDiff<T extends Object>(
@@ -55,7 +65,7 @@ export function getDiff<T extends Object>(
         React simplifies this problem requiring a `key` prop
         to know for sure if the elem existence. 
       */
-      const meta = opts.arrMeta.find(e => e.path === path);
+      const meta = opts.arrMeta!.find(e => e.path === path);
       if (!meta) {
         throw new Error(
           `Could not compare array in '${path}' because no key was provided`
@@ -83,21 +93,25 @@ export function getDiff<T extends Object>(
       let arrChanges: Change[] = [];
 
       for (let i = 0; i < local[k].length; i++) {
-        const elemPath = `${path}.${i}`;
         if (onlyInLocal.includes(local[k][i])) {
-          arrChanges.push(new Change(elemPath, ChangeType.ElemDeleted));
+          arrChanges.push(
+            new Change(path, ChangeType.ElemDeleted, local[k][i], null, i)
+          );
         } else {
           arrChanges = arrChanges.concat(
             getDiff(local[k][i], remote[k][i], {
               ...opts,
-              path: elemPath,
+              path,
               isArray: true,
+              index: i,
             })
           );
         }
       }
       arrChanges = arrChanges.concat(
-        onlyInRemote.map(e => new Change(path, ChangeType.ElemAdded))
+        onlyInRemote.map(
+          e => new Change(path, ChangeType.ElemAdded, null, remote[e.i], e.i)
+        )
       );
 
       changes = changes.concat(arrChanges);
@@ -114,7 +128,10 @@ export function getDiff<T extends Object>(
         changes.push(
           new Change(
             getPath(k),
-            opts.isArray ? ChangeType.ElemEdited : ChangeType.Edit
+            opts.isArray ? ChangeType.ElemEdited : ChangeType.Edit,
+            local[k],
+            remote[k],
+            opts.isArray ? opts.index : null
           )
         );
       }
@@ -125,7 +142,10 @@ export function getDiff<T extends Object>(
     changes.push(
       new Change(
         getPath(k),
-        opts.isArray ? ChangeType.ElemAdded : ChangeType.Add
+        opts.isArray ? ChangeType.ElemAdded : ChangeType.Add,
+        null,
+        remote[k],
+        opts.isArray ? opts.index : null
       )
     )
   );
@@ -133,7 +153,10 @@ export function getDiff<T extends Object>(
     changes.push(
       new Change(
         getPath(k),
-        opts.isArray ? ChangeType.ElemDeleted : ChangeType.Delete
+        opts.isArray ? ChangeType.ElemDeleted : ChangeType.Delete,
+        local[k],
+        null,
+        opts.isArray ? opts.index : null
       )
     )
   );

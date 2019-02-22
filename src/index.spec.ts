@@ -173,7 +173,8 @@ describe('getDiff', () => {
         arrMeta: [{ path: 'b', key: 'c' }],
       });
 
-      expect(diff[0].prop).to.eql('b.0.c');
+      expect(diff[0].prop).to.eql('b.c');
+      expect(diff[0].index).to.eql(0);
       expect(diff[0].type).to.eql(ChangeType.ElemEdited);
     });
 
@@ -194,19 +195,20 @@ describe('getDiff', () => {
         arrMeta: [{ path: 'b', key: 'c' }],
       });
 
-      expect(diff[0].prop).to.eql('b.0.d');
+      expect(diff[0].prop).to.eql('b.d');
+      expect(diff[0].index).to.eql(0);
       expect(diff[0].type).to.eql(ChangeType.ElemAdded);
     });
 
     it('should work with removing props', () => {
       const objA = {
         a: 1,
-        b: [{ c: 'lol', k: '1' }],
+        b: [{ c: 'lol', d: '1' }],
       };
 
       const objB = {
-        a: 2,
-        b: [{ c: 'lol2' }],
+        a: 1,
+        b: [{ c: 'lol' }],
       };
 
       const diff = getDiff(objA, objB, {
@@ -215,7 +217,9 @@ describe('getDiff', () => {
         arrMeta: [{ path: 'b', key: 'c' }],
       });
 
-      expect(diff.length).to.eql(3);
+      expect(diff[0].prop).to.eql('b.d');
+      expect(diff[0].index).to.eql(0);
+      expect(diff[0].type).to.eql(ChangeType.ElemDeleted);
     });
 
     it('should work with multiple changes', () => {
@@ -235,7 +239,7 @@ describe('getDiff', () => {
         arrMeta: [{ path: 'b', key: 'c' }],
       });
 
-      expect(diff[0].prop).to.eql('b.0.d');
+      expect(diff[0].prop).to.eql('b.d');
       expect(diff[0].type).to.eql(ChangeType.ElemAdded);
     });
   });
