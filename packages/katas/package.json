@@ -1,0 +1,16 @@
+{
+  "name": "katas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "t": "mocha -r mocha.js **/*.spec.js",
+    "w": "mocha -r mocha.js **/*.spec.js -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
+  }
+}
