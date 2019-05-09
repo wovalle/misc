@@ -1,23 +1,25 @@
 class Query {
   constructor() {
-    this.data = [];
+    this.collection = [];
     this.mapFn = null;
-    this.whereFn = null;
+    this.whereFns = [];
     this.groupByFns = null;
     this.orderByFn = null;
+    this.havingFn = null;
   }
 
   select(fn) {
     this.mapFn = fn;
     return this;
   }
-  from(arr = []) {
-    this.data = arr;
+
+  from(col) {
+    this.collection = col;
     return this;
   }
 
-  where(fn) {
-    this.whereFn = fn;
+  where(...fns) {
+    this.whereFns.push(fns);
     return this;
   }
 
@@ -31,10 +33,21 @@ class Query {
     return this;
   }
 
+  having(fn) {
+    this.havingFn = fn;
+    return this;
+  }
+
   execute() {
-    let data = this.data;
-    if (this.whereFn) {
-      data = data.filter(this.whereFn);
+    let data = this.collection;
+
+    if (this.whereFns.length) {
+      data = this.whereFns.reduce((_, fns) => {
+        return fns.reduce((acc2, fn) => {
+          acc2 = acc2.concat(data.filter(fn).reverse());
+          return acc2;
+        }, []);
+      }, []);
     }
 
     if (this.groupByFns) {
@@ -63,6 +76,10 @@ class Query {
 
     if (this.mapFn) {
       data = data.map(this.mapFn);
+    }
+
+    if (this.havingFn) {
+      data = data.filter(this.havingFn);
     }
 
     return data;
