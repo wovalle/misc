@@ -8,18 +8,20 @@
       "type": "node",
       "request": "launch",
       "name": "Mocha Tests",
-      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "program": "${workspaceFolder}/packages/katas/node_modules/mocha/bin/_mocha",
       "args": [
         "-u",
         "bdd",
         "--timeout",
         "999999",
+        "-r",
+        "mocha.js",
         "--colors",
-        "--require",
-        "ts-node/register",
-        "${workspaceFolder}/src/*.spec.ts"
+        "${workspaceFolder}/packages/katas/**/*.spec.js"
       ],
-      "internalConsoleOptions": "openOnSessionStart"
+      "internalConsoleOptions": "openOnSessionStart",
+      "runtimeExecutable": "~/.nvm/versions/node/v12.2.0/bin/node",
+      "cwd": "${workspaceFolder}/packages/katas"
     }
   ]
 }
