@@ -6,15 +6,27 @@ export const config = {
 };
 
 export function middleware(req: NextRequest, ev: NextFetchEvent) {
+  const url = process.env.WEBHOOK;
+
+  if (!url) {
+    throw new Error("Missing webhook env variable");
+  }
+
+  const headers = Array.from(req.headers.entries()).reduce<
+    Record<string, unknown>
+  >((acc, [k, v]) => {
+    acc[k] = v;
+    return acc;
+  }, {});
+
   const obj = {
-    headers: JSON.stringify(req.headers),
-    host: req.headers.get("host"),
+    headers,
     geo: req.geo,
     ip: req.ip,
   };
 
   return ev.waitUntil(
-    fetch("https://webhook.site/a345e4c9-f18a-4dcb-8475-07d34177f65d", {
+    fetch(url, {
       method: "POST",
       body: JSON.stringify(obj),
     }).catch((e) => {
