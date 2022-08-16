@@ -1,0 +1,53 @@
+@token = {{$dotenv telegram.token}}
+@baseUrl = https://api.telegram.org/bot{{token}}
+
+POST http://localhost:8080/api/v1/telegram
+content-type: application/json
+
+{
+  "update_id": 328014643,
+  "message": {
+    "message_id": 1,
+    "from": {
+      "id": 8294858,
+      "is_bot": false,
+      "first_name": "Willy",
+      "last_name": "Ovalle",
+      "username": "wovalle",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": 8294858,
+      "first_name": "Willy",
+      "last_name": "Ovalle",
+      "username": "wovalle",
+      "type": "private"
+    },
+    "date": 1657915162,
+    "text": "Remind me to do the itinerary tomorrow at 10",
+    "entities": [
+      {
+        "offset": 0,
+        "length": 6,
+        "type": "bot_commands"
+      }
+    ]
+  }
+}
+
+### 
+POST {{baseUrl}}/getMe
+content-type: application/json
+
+
+### 
+POST {{baseUrl}}/setWebhook?remove
+content-type: application/json
+
+{
+    "url": "https://20d49ef8e58de0.lhrtunnel.link/api/v1/telegram"
+}
+
+### 
+POST {{baseUrl}}/deleteWebhook
+content-type: application/json
