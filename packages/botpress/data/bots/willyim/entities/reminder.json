@@ -1,0 +1,16 @@
+{
+  "id": "reminder",
+  "name": "reminder",
+  "type": "pattern",
+  "occurrences": [],
+  "sensitive": false,
+  "fuzzy": 0.8,
+  "examples": [
+    "take out the trash",
+    "wake up",
+    "clean my bathroom",
+    "set an alarm"
+  ],
+  "pattern": "[\\w\\s]+",
+  "matchCase": false
+}

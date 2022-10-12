@@ -1,0 +1,105 @@
+{
+  "version": "0.0.1",
+  "catchAll": {
+    "onReceive": [],
+    "next": []
+  },
+  "startNode": "entry",
+  "nodes": [
+    {
+      "id": "entry",
+      "name": "entry",
+      "next": [
+        {
+          "condition": "event.nlu.intent.name === 'set_reminder'",
+          "conditionType": "intent",
+          "node": "setReminder"
+        },
+        {
+          "condition": "event.nlu.intent.name === 'greetings'",
+          "conditionType": "intent",
+          "node": "greetings"
+        },
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "unknown"
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null
+    },
+    {
+      "id": "9d613501c2",
+      "name": "setReminder",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "END"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-5GhyEU"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "40475c003a",
+      "name": "greetings",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "END"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-5ZrYTR"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "7c611e05ac",
+      "name": "unknown",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "END"
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "skill-4dfba0",
+      "type": "skill-call",
+      "skill": "Slot",
+      "name": "setReminder-text-filling",
+      "flow": "skills/Slot-4dfba0.flow.json",
+      "next": [
+        {
+          "caption": "On extracted",
+          "condition": "temp.extracted == \"true\"",
+          "node": ""
+        },
+        {
+          "caption": "On not found",
+          "condition": "temp.notExtracted == \"true\"",
+          "node": ""
+        },
+        {
+          "caption": "On already extracted",
+          "condition": "temp.alreadyExtracted == \"true\"",
+          "node": ""
+        }
+      ],
+      "onEnter": null,
+      "onReceive": null
+    }
+  ]
+}

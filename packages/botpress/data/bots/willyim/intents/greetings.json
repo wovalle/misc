@@ -1,0 +1,21 @@
+{
+  "name": "greetings",
+  "utterances": {
+    "en": [
+      "hey",
+      "hello",
+      "hola",
+      "sup",
+      "klk",
+      "klok",
+      "keloke",
+      "dime a ve",
+      "hi",
+      "greetings"
+    ]
+  },
+  "slots": [],
+  "contexts": [
+    "global"
+  ]
+}

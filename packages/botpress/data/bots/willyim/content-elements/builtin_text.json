@@ -1,0 +1,47 @@
+[
+  {
+    "id": "builtin_text-5ZrYTR",
+    "formData": {
+      "text$en": "sup! im a sorta dumb bot. I can help you saving reminders.\n\nset a reminder for <<something>> tomorrow\nremind me <<something>> in 1 hour\n<<something>> at 3:30pm",
+      "markdown$en": true,
+      "typing$en": true,
+      "variations$en": []
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-10-01T13:11:03.399Z",
+    "modifiedOn": "2022-10-01T13:11:03.399Z"
+  },
+  {
+    "id": "builtin_text-5GhyEU",
+    "formData": {
+      "text$en": "Got it gorgeous! I'll remind you {{event.nlu.slots.text.source}} at {{event.nlu.slots.time.source}}",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-10-01T14:08:01.217Z",
+    "modifiedOn": "2022-10-01T15:56:07.568Z"
+  },
+  {
+    "id": "builtin_text-GelynH",
+    "formData": {
+      "text$en": "Sorry dude, didn't get this. Want some reminder examples that I **do** understand? Type \"give me some examples baby\"",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-10-01T14:30:48.766Z",
+    "modifiedOn": "2022-10-01T14:31:31.092Z"
+  },
+  {
+    "id": "builtin_text-kCDZ0K",
+    "formData": {
+      "text$en": "Sure, what should I remind you about?",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-10-01T16:17:44.565Z",
+    "modifiedOn": "2022-10-01T16:17:44.565Z"
+  }
+]

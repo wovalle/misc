@@ -1,0 +1,55 @@
+{
+  "name": "set_reminder",
+  "utterances": {
+    "en": [
+      "[take the thrash](text) [this tuesday](time)",
+      "[play some music](text) [this tuesday at 8pm](time)",
+      "[take the thrash](text) [next monday](time)",
+      "[remind me](ordinance) [buy dinner](text) in one hour [in two hours](time)",
+      "[remind me to](ordinance) [take out the dog](text) [in one hour](time)",
+      "[rm](ordinance) take out the thrash [tomorrow](time)",
+      "[rm to](ordinance) [clean the room](text) at [14:25](time)",
+      "[take out the thrash](text) [at 3:15pm](time)",
+      "[rm](ordinance) [take out thrash](text) on [Monday at 6am](time)",
+      "[call mom](ordinance) on [Monday at 7pm](time)",
+      "[code the bot](text) on [tuesday morning](time)",
+      "[climb the everest](text) [october 17th](time)",
+      "[watch ms marvel](text) on [october 1st](time)",
+      "[Clip your nails](text) in [June 17th](time)",
+      "[remind me to](ordinance) [call mom](text) [next weekend](time)",
+      "[clean the dishes](text) in the [weekend](time)",
+      "[remind me to](ordinance) [go to the airport](text) [next weekday](time)",
+      "[Pick up some groceries](text) [next week](time)",
+      "[remind me to](ordinance) [live to my fullest](text) [next monday](time)"
+    ]
+  },
+  "slots": [
+    {
+      "id": "s4RDdRiGMfpoQHskoTHxO",
+      "name": "text",
+      "entities": [
+        "reminder"
+      ],
+      "color": 1
+    },
+    {
+      "id": "JK3zeS9HODDCTjbBbZeqD",
+      "name": "time",
+      "entities": [
+        "time"
+      ],
+      "color": 2
+    },
+    {
+      "id": "2ZFP_6tlcpN8zOuxU5uM4",
+      "name": "ordinance",
+      "entities": [
+        "any"
+      ],
+      "color": 3
+    }
+  ],
+  "contexts": [
+    "global"
+  ]
+}
