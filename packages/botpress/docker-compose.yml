@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  botpress:
+    container_name: botpress
+    image: botpress/server
+    command: /botpress/bp
+    ports:
+      - 8877:3000
+    volumes:
+      - ./config/botpress/data:/botpress/data
+    environment:
+      - AUTO_MIGRATE=true
+    labels:
+      - traefik.enable=true
+    restart: unless-stopped
