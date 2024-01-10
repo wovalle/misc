@@ -1,4 +1,4 @@
 node_modules
 .env
 dist
-packages/butler/bin
+apps/butler/bin
