@@ -1,0 +1,59 @@
+{
+  "name": "@tant/webapp",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev --manual",
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "start": "remix-serve ./build/index.js",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.499.0",
+    "@aws-sdk/s3-request-presigner": "^3.499.0",
+    "@directus/sdk": "^14.0.0",
+    "@epic-web/cachified": "^5.1.2",
+    "@mantine/core": "^7.5.3",
+    "@mantine/hooks": "^7.5.3",
+    "@microlink/react-json-view": "^1.23.0",
+    "@remix-run/css-bundle": "^2.5.1",
+    "@remix-run/node": "^2.5.1",
+    "@remix-run/react": "^2.5.1",
+    "@remix-run/serve": "^2.5.1",
+    "@tabler/icons-react": "^2.47.0",
+    "assemblyai": "^4.3.1",
+    "ffmpeg-static": "^5.2.0",
+    "ffmpeggy": "^3.0.0",
+    "ffprobe-static": "^3.1.0",
+    "isbot": "^4.1.0",
+    "lru-cache": "^10.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remix-utils": "^7.5.0",
+    "tiny-invariant": "^1.3.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.5.1",
+    "@types/ffprobe-static": "^2.0.3",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss": "^8.4.35",
+    "postcss-preset-mantine": "^1.13.0",
+    "postcss-simple-vars": "^7.0.1",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
