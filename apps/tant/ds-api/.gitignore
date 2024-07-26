@@ -1,0 +1,7 @@
+lib/python*
+bin/*
+include/*
+share/*
+__pycache__/
+downloads/
+.env
